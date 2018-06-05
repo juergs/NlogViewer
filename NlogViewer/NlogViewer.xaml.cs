@@ -70,8 +70,11 @@ namespace NlogViewer
             {
                 if (LogEntries.Count >= 50)
                     LogEntries.RemoveAt(0);
-                
+
                 LogEntries.Add(vm);
+                int LastCount = logView.Items.Count - 1;
+                logView.SelectedIndex = LastCount;
+                logView.ScrollIntoView(logView.Items[LastCount]);
             }));
         }
     }
