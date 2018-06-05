@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Globalization;
 using System.Windows.Media;
-using NLog;
 
 namespace NlogViewer
 {
@@ -23,7 +23,6 @@ namespace NlogViewer
 
             SetupColors(logEventInfo);
         }
-
 
         public string Time { get; private set; }
         public string LoggerName { get; private set; }

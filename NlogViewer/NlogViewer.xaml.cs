@@ -1,20 +1,9 @@
-﻿using NLog.Targets;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NlogViewer
 {
@@ -43,7 +32,6 @@ namespace NlogViewer
         [Description("Width of Exception column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
         public double ExceptionWidth { get; set; }
-
 
         public NlogViewer()
         {
