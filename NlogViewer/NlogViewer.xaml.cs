@@ -26,12 +26,18 @@ namespace NlogViewer
         [Description("Width of Level column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
         public double LevelWidth { get; set; }
+
         [Description("Width of Message column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
         public double MessageWidth { get; set; }
+
         [Description("Width of Exception column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
         public double ExceptionWidth { get; set; }
+
+        private int _MaxLines;
+        private bool _AutoScroll;
+        private bool _LastSelect;
 
         public NlogViewer()
         {
@@ -46,6 +52,9 @@ namespace NlogViewer
                 {
                     IsTargetConfigured = true;
                     target.LogReceived += LogReceived;
+                    _MaxLines = target.MaxLines;
+                    _AutoScroll = target.AutoScroll;
+                    _LastSelect = target.LastSelect;
                 }
             }
         }
@@ -56,13 +65,15 @@ namespace NlogViewer
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (LogEntries.Count >= 50)
+                if (LogEntries.Count >= _MaxLines)
                     LogEntries.RemoveAt(0);
 
                 LogEntries.Add(vm);
                 int LastCount = logView.Items.Count - 1;
-                logView.SelectedIndex = LastCount;
-                logView.ScrollIntoView(logView.Items[LastCount]);
+                if (_LastSelect)
+                    logView.SelectedIndex = LastCount;
+                if (_AutoScroll)
+                    logView.ScrollIntoView(logView.Items[LastCount]);
             }));
         }
     }

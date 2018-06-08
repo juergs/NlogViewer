@@ -6,7 +6,9 @@ NlogViewer
 
 NlogViewer is a simple WPF-control to show NLog-logs. It's heavily inspired by [this blog][1].
 
-##How to use?##
+Forked from [erizet/NlogViewer](https://github.com/erizet/NlogViewer)
+
+## How to use?
 
 Add a namespace to your Window, like this:
 
@@ -23,13 +25,31 @@ To setup NlogViewer as a target, add the following to your Nlog.config.
     <add assembly="NlogViewer" />
   </extensions>
   <targets>
-    <target xsi:type="NlogViewer" name="ctrl" />
+    <target xsi:type="NlogViewer"
+            name="ctrl"
+            autoScroll="true"
+            maxLines="100"
+            lastSelect="true" />
   </targets>
   <rules>
     <logger name="*" minlevel="Trace" writeTo="ctrl" />
   </rules>
 ```
 
-##Nuget##
+## Configuration Syntax
 
-A NuGet-package is available [here][nuget]. It will try to install the control and a sample Nlog.config.
+```xml
+<target xsi:type="NlogViewer"
+        name="String"
+        autoScroll="Boolean"
+        maxLines="Integer"
+        lastSelect="Boolean" />
+```
+
+## Parameters
+### General Options
+* **name** - Name of the target.
+* **autoScroll** - Indicates whether scroll bar will be moved automatically to show most recent log entries. (default true)
+* **maxLines** - Maximum number of lines control will store.  
+After exceeding the maximum number, first line will be deleted. (default 50)
+* **lastSelect** - Automatically select most recent log entries. (dafault true)

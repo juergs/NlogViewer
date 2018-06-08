@@ -80,9 +80,13 @@
     <None Include="NlogViewer.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="NuGet\content\NLog.config" />
+    <None Include="NuGet\content\NLog.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="NuGet\tools\Install.ps1" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
